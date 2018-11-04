@@ -78,7 +78,7 @@ async function run_cd(cmd) {
         return;
     }
     if (directory == "..") {
-        window.location = ".";
+        window.location = "index.html";
     }
 
     if ($("#" + directory).length > 0) {
