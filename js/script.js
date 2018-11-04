@@ -155,7 +155,7 @@ function create_handlers() { //refractor this
         // console.log("command: " + $(e.target).attr("cmd"));
         $("#terminal").val(''); //clear terminal input
         console.log(e.target);
-        await valTypeWriter("terminal", $(e.target).attr("cmd"), 50);
+        await valTypeWriter("terminal", $(e.target).attr("cmd"), 30);
         system($("#terminal").val());
     });
 }
@@ -174,7 +174,7 @@ async function show_listing(delay=300) {
     dir = getURLParameter("dir").toLowerCase();
     await typeWriter(dir + "-nav", "directory listing:");
     await typeWriter(dir + "-nav", "--------------------------");
-
+    
     elements = $("#" + dir + " .cmdtrigger");
     // console.log("#" + dir + " .cmdtrigger");
     console.log(elements.length);

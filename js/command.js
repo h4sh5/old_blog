@@ -74,10 +74,18 @@ async function run_cd(cmd) {
     console.log(cmd);
     directory = cmd.split(" ")[1];
     directory = directory.toLowerCase();
+    if (directory == ".") {
+        return;
+    }
+    if (directory == "..") {
+        window.location = ".";
+    }
+
     if ($("#" + directory).length > 0) {
         //hide all articles and show only the one with #directory
         // $("article").hide();
         // $("#" + directory).show();
+
         window.location = "?dir=" + directory;
     } else {
         clear_output();
@@ -145,6 +153,16 @@ async function run_help() {
 }
 
 
+async function run_echo(cmd) {
+    $("#terminal").val("");
+    string = cmd.split(" ").slice(1).join(" ");
+    string.toLowerCase();
+    clear_output();
+    await typeWriter("output", string);
+
+}
+
+
 //a function that executes a command.
 function system(cmd) {
     cmd = cmd.toLowerCase();
@@ -162,6 +180,10 @@ function system(cmd) {
 
     if (cmd.startsWith("ls") || cmd.startsWith("dir")) {
         return run_ls();
+    }
+
+    if (cmd.startsWith("echo")) {
+        return run_echo(cmd);
     }
 
     switch (cmd) {

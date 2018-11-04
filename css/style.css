@@ -150,11 +150,11 @@ div.img-div {
 }
 
 #progress-img {
-  height: 15em;
+  height: 20em;
 }
 
 #final-img {
-  height: 15em;
+  height: 20em;
 }
 
 nav {
@@ -164,4 +164,8 @@ nav {
 
 .to-hide * {
   color: white;
+}
+
+blockquote * {
+  background-color: #333;
 }

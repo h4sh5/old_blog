@@ -29,9 +29,9 @@
 
         <p id="caret" class="typewriter">Diving deep into infosec with the love of God.</p>
 
-        <p>My name is Haoxi, or you can call me h4sh. I love technology, and have since I was a child. I believe that the world can be such a better place, if technology is used in the right way.</p>
+        <p>My name is Haoxi (pronounced How'she), or you can call me hash. I love technology, and have since I was a child. I believe that the world can be such a better place, if technology is used in the right way.</p>
 
-        <p>I love hacking things. What does it have to do with doing good you ask? Hacking, unlike what Hollywood tells you, is an art. it is solving problems in creative ways, and making technology do what everyone else thought it couldn't or shouldn't.</p>
+        <p>I love hacking things. What does it have to do with doing good you ask? Hacking, unlike what Hollywood tells you, is an art. It is solving problems in creative ways, and making technology do what everyone else thought it couldn't or shouldn't.</p>
 
         <p>Now, dive in with me.... <a href="?cmd=help" cmd="help" class="cmdtrigger">help</a></p>
 
@@ -43,6 +43,11 @@
 
         <p id="caret" class="typewriter">Inked Out</p>
         <nav id="inkedout-nav"></nav>
+
+        <div>
+            <a href="#home" class="cmdtrigger" desc="Go back to home page"><h2 class="listing" cmd="cd ..">..</h2></a>
+        </div>
+
         <div>
             <a href="#inkedout-intro" class="cmdtrigger" cmd="cat introduction" desc="Introduction to project InkedOut">
                 <h2 class="listing" cmd="cat introduction">introduction</h2></a>
@@ -145,7 +150,7 @@ $article = strip_tags(file_get_contents($txtUrl));
 
             <p>To add meaning to our website, we decided to focus on only one event, and having the articles that we use be in chronologically ordered reports of that event — the Gallipoli Campaign. Cos why not? It’s ANZAC 100 this year, so it’s a good matching theme. </p>
 
-            <p>So the team retrieved from the API about a hundred of articles that came from the keyword “Gallipoli” (using the same method from Hack 1) and we read through them all to select out the relevant articles of good quality. At the end we came up with a selection of only six articles, each representing a certain stage of the campaign.</p>
+            <p>So the team retrieved from the API about a hundred of articles that came from the keyword “Gallipoli” (using the same method from Hack 1) and we read through them all to select out the relevant articles of good quality. At the end we came up with a selection of only six articles, each representing a certain stage of the campaign. The array of keywords below are what we used to search both SLQ (partly) for the matching images and Trove for the article text (instead of generating them randomly from the SLQ data).</p>
 
             <pre><code class="language-php">
 $trove_keywords = array(
@@ -186,23 +191,96 @@ $smudge_words = array(
 
         </div></section>
 
+        <div>
+            <a href="#inkedout-reflection" class="cmdtrigger" cmd="cat reflection" desc="Some deep thoguhts on the course and project as a whole"><h2 class="listing" cmd="cat reflection">reflection</h2></a>
+        </div>
+        <section id="inkedout-reflection"><div class="article-section">
+
+            <p>This is my personal reflection on the project and the DECO1800 course at UQ as a whole.</p>
+
+            <h2>The Journey</h2>
+
+            <p>First of all a bit of context: I am currently studying at the University of Queensland as a first year Bachelor of IT student (as of 2018). In the first semester, which was half a year ago, I took some introductory programming courses such as CSSE1001, which was really easy due to my 3 years of programming experience back in high school. I also took DECO1100, which I really enjoyed due to the wisdom and humility as well as professionalism of Professor Ben Matthews, who challenged and stretched my critical thinking.</p>
+
+            <p>That was a solid semester, but I was full of myself and thought it was boring. So this semester I took some of the most notoriously hard courses together just for fun, CSSE2002 and CSSE2310. That is my reason/excuse for being so occupied all the time and didn't have that much time to build my DECO1800 team properly. Keep it in mind as you read on.</p>
+
+            <p>So in general, this course has been easy and a relaxing oasis compared to the intensity of the other courses I am taking this semester. Web programming wasn't hard for me, after taking DECO1400 and brushing up the quality of my front end coding. Since I was the leader throughout last semester in DECO1100 (Design thinking), I thought I would lead the team this time as well.</p>
+
+            <p>But unlike last time, I didn't get to choose my team members. That wasn't good. I didn't see that coming, but hey, I have faith in God and he delivers. I was blessed with a really amazing documenter in my team, Rine, in whom I trusted the entirety of the documentations to and never had to worry a thing about what she had to finish. While she carried that part, I carried my digital cross of literally coding 90% of the website. Solid.</p>
+
+            <p>We had pretty consistent team meetings every Friday, where me and Rine did most of the talking. Because not everyone on the team could speak Chinese (I didn't find out that Lee from Malaysia could until like week 4) I pretended to not know how to, and successfully did until I revealed to everyone half way into the term. I think that was a pretty bad move given that the two Chinese members of my team didn't know what was going on half of the time as much as I tried to explain it in English. We didn't really bond well, and I was a bit too afraid to delegate big tasks; the tiny coding assignments I have resulted in quite disappointed and messy snippets of code that took a while to fix. But I should've taught them more, so that they can take from this course more. I could have.</p>
+
+            <p>I realised this towards the end of the semester, when it was a bit too late. I delegated the two Chinese members, Steven and Irene, the task of making a drag and drop interface in javascript so that I could implement the final boss level of the quiz. They happily took on the task, and delivered to me a half-working prototype of different divs with draggable numbers. Not too bad for a start! I got the idea and after a while of tweaking the final level was rushed together.</p>
+
+            <h2>Expectations, reality and more expectations</h2>
+            <p>Oh, look! It's my week 1 journal post!</p>
+            <blockquote>
+                <h3>What I know about this course?</h3>
+                <p>Based on what I know about DECO1800, I expect to be doing some cool stuff this semester with a team of 4 people, building a website that utilizes data from the State Library of Queensland to educate/inform/entertain. On the coding side there will be some PHP and JavaScript (both front & back end)</p>
+
+                <h3>Personal learning goals?</h3>
+                <p>I want to learn some more team building and leadership skills. I was the team leader through the DECO1100 course last semester and will remain so.</p>
+
+                <h3>Worries?</h3>
+                <p>I’m worried about using too much JavaScript and making a really heavy website with slow load times, and being forced to do so.</p>
+
+                <h3>Hopes & dreams?</h3>
+                <p>I hope that I can work well with my team and get something really cool done.</p>
+
+                <h3>Expectations?</h3>
+                <p>I expect this course to be just as fun, engaging and challenging as DECO1100 last semester. I expect having lots of freedom in the development of the project so that cool ideas can be materialized, and that it will not be easy but will push and stretch each person in the course including myself. So bring it on :)</p>
+
+            </blockquote>
+
+            <p>Wasn't that cute... Some expectations were indeed met, but the course in general was not as good as I expected it to be. It was definitely fun; less so challenging, and definitely not as engaging the studios I had last semester in design thinking. In 1100 we had stand ups every 10-20 minutes asking team members to present some of their ideas and reflections on particular things, and I think that's a really good thing to do to keep team members on track with what to do and what's going on. I also loved how every "zone"(2-3 teams) had a dedicated tutor that would look after us in detail. I think that's something the tutors can try to do in this course.</p>
+
+            <p>Oh and the dataset was horrible, in case you missed that in hack1 and hack2. But hey, I wouldn't need to be hacky otherwise.</p>
+
+            <p>I think I missed by personal learning goal. I was too focused on the product and outcome itself I almost stopped caring about my team. Well, I was very generous with encouragement and lollies, but not tasks to empower them to take part and learn more coding. If there are any takeaways in that regard through this course, it would be:</p>
+            <ul>
+                <li>Speak their language if you can, and build good relationships with your teammates</li>
+                <li>Let your teammates do more just to learn, if it was bad you can always ask them to change it / fix it yourself later. The point is to empower.</li>
+            </ul>
+
+            <h2>More Feedback</h2>
+
+            <p>Matt, if you are reading this, you are an awesome lecturer. Your slides are always so professionally and humorously made, your delivery is always so clear and your vibe makes a good designer. Your soothing voice made me so soothing in DECO1400 lectures that I deliberately skipped them so I don't fall asleep.</p>
+
+            <p>This is a decent first year course. APIs are no doubt used everywhere, and getting some backend coding taught to students is crucial and beneficial for everyone. The course provided a great platform for students to freely express their creativity through design and code, which is pretty cool. It enabled some teams of third year students to really take their time to shine, inspire and dominate everyone else (yes you know who I'm talking about)</p>
+
+            <p>I also earnestly, earnestly encourage letting people choose their own team and do peer reviews. I think peer reviews are not suppose to be the last resort of bad contribution, but its purpose is to make everyone do their part and ensure good communication with their team.</p>
+
+        </div></section>
+
+        
+
+
 
     </article>
     
 
     <article id="contact" desc="Get in touch with me">
         <p id="caret" class="typewriter">Contact Me</p>
-        <section id="contact-email"><div class="article-section">
-            <a href="#contact-email" class="cmdtrigger" cmd="cat email" desc="haoxi.tan@gmail.com">
-                <h2 class="listing" cmd="echo my email is haoxi.tan@gmail.com">email</h2></a>
+        <!-- leave the nav area empty -->
+        <nav id="contact-nav"></nav>
 
+        <div>
+            <a href="#home" class="cmdtrigger" desc="Go back to home page"><h2 class="listing" cmd="cd ..">..</h2></a>
+        </div>
+
+        <div>
+            <a href="#contact-email" class="cmdtrigger" cmd="cat email" desc="haoxi.tan@gmail.com"><h2 class="listing" cmd="echo my email is haoxi.tan@gmail.com">email</h2></a>
+        </div>
+
+        <section id="contact-email"><div class="article-section">
             <p class="to-hide"><a href="mailto:haoxi.tan@gmail.com">haoxi.tan@gmail.com</a></p>
 
         </div></section>
 
+        <div>
+            <a href="#contact-facebook" class="cmdtrigger" cmd="echo just search Haoxi Tan on facebook, you won't miss me" desc="Haoxi Tan"><h2 class="listing" cmd="echo just search Haoxi Tan on facebook, you won't miss me">facebook</h2></a>
+        </div>
         <section id="contact-facebook"><div class="article-section">
-            <a href="#contact-facebook" class="cmdtrigger" cmd="echo just search Haoxi Tan on facebook, you won't miss me" desc="Haoxi Tan">
-                <h2 class="listing" cmd="echo just search Haoxi Tan on facebook, you won't miss me">facebook</h2></a>
             <p class="to-hide">Haoxi Tan</p>
         </div></section>
 
