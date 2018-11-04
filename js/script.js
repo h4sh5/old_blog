@@ -12,14 +12,33 @@ $(document).ready(async function() {
     $("article").hide();
     //hide all articles and show only the beginning, unless there's some page specified in the GET param
     dir = decodeURIComponent(getURLParameter('dir')).toLowerCase();
+    file = decodeURIComponent(getURLParameter('file')).toLowerCase();
 
     if (dir != "undefined" && $("#" + dir).length > 0) {
         $("#" + dir).show();
         $(this).scrollTop(0);
-        await show_listing();
-    } else {
+        if (file == "undefined") {
+            await show_listing();
+        } else {
+            console.log("displaying file!");
+            await show_listing(0);
+        }
+        
+    } else if (file == "undefined") {
+        //if dir is invalid and file doesn't exist
         $("#home").show();
         $(this).scrollTop(0);
+        //type in ls and execute it
+        await sleep(2000);
+        await valTypeWriter("terminal", "ls", 300);
+        system($("#terminal").val());
+    }
+
+    if (file != "undefined" && $("#" + dir + "-" + file).length > 0) {
+        clear_output();
+        element = $("#" + dir + "-" + file);
+        html = element.html();
+        document.getElementById("output").innerHTML += html;
     }
 
 
@@ -73,8 +92,7 @@ async function valTypeWriter(elementId, text, speed) {
 }
 
 /* type some text to selected element */
-async function typeWriter(elementId, text, wrapperClass=null) {
-    var delay = 30;
+async function typeWriter(elementId, text, wrapperClass=null, delay=10) {
     // console.log(speed);
     if (wrapperClass != null) { 
         //if a wrapper class is defined, create a new span with that class
@@ -100,7 +118,9 @@ $("#terminal").on("keypress", function(e) {
     if (e.keyCode == 13) {
         //TODO: change to execute
         // window.location = "?cmd=" + $("#terminal").val();
+        //clear it
         system($("#terminal").val());
+        $("#terminal").val("");
     }
 });
 
@@ -108,12 +128,12 @@ function create_handlers() { //refractor this
     //clear all previous handlers then create again
     $(".cmdtrigger").off();
 
-    $(".cmdtrigger").click(async function(e) {
+    $("a.cmdtrigger").click(async function(e) {
         e.preventDefault();
         // console.log("command: " + $(e.target).attr("cmd"));
         $("#terminal").val(''); //clear terminal input
         console.log(e.target);
-        await valTypeWriter("terminal", $(e.target).attr("cmd"), 80);
+        await valTypeWriter("terminal", $(e.target).attr("cmd"), 50);
         system($("#terminal").val());
     });
 }
@@ -123,7 +143,7 @@ function get_counter() {
     return window.counter;
 }
 
-async function show_listing() {
+async function show_listing(delay=300) {
     //first hide all sections
     $("section").hide();
     $(".cmdtrigger").hide();
@@ -149,9 +169,13 @@ async function show_listing() {
         document.getElementById(element.id).parentNode.innerHTML += "&nbsp;".repeat(spaces - length);
         console.log(element.id, element);
         description = $("#" + element.id).attr("desc");
-        await typeWriter(parentId, description, "description");
+        if (delay != 300) {
+            await typeWriter(parentId, description, "description", 0);
+        } else {
+            await typeWriter(parentId, description, "description");
+        }
         console.log("test");
-        await sleep(200);
+        await sleep(delay);
         
     }
     create_handlers(); //refresh handlers list

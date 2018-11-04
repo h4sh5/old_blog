@@ -79,27 +79,98 @@
                 The following PHP snippet is how I got the article id off the trove search results:</p>
 
                 <pre><code class="language-php">
-                    $troveResults = json_decode($troveResults, true);
-                    $articleUrl = $troveResults["response"]["zone"][0]["records"]["article"][0]["url"];
-                    //returns the string '/article/id'
-                    $articleId = explode("/", $articleUrl)[2];
+$troveResults = json_decode($troveResults, true);
+$articleUrl = $troveResults["response"]["zone"][0]["records"]["article"][0]["url"];
+//returns the string '/article/id'
+$articleId = explode("/", $articleUrl)[2];
                 </code></pre>
 
                 <p>Now with the article id, we can pull the text down too:</p>
                 <pre><code class="language-php">
-                    $txtBaseUrl = "https://trove.nla.gov.au/newspaper/rendition/nla.news-article";
-                    $txtUrl = $txtBaseUrl . $articleId . ".txt";
-                    $article = strip_tags(file_get_contents($txtUrl)); 
+$txtBaseUrl = "https://trove.nla.gov.au/newspaper/rendition/nla.news-article";
+$txtUrl = $txtBaseUrl . $articleId . ".txt";
+$article = strip_tags(file_get_contents($txtUrl)); 
                 </code></pre>
 
                 <p>And voilà!</p>
                 <div class="img-div"><img id="article-img" src="images/article.png"></div>
 
             </div>
-            
+
         </section>
         
 
+        <div>
+            <a href="#inkedout-hack2" class="cmdtrigger" cmd="cat hack2" desc="sophisticated smudging">
+                <h2 class="listing" cmd="cat hack2">hack2</h2></a>
+        </div>
+        <section id="inkedout-hack2"><div class="article-section">
+                <p>Now it’s smudging time! I’ve always been struggling with how to implement this properly, without the user being to just inspect element and cheat their way through our quiz. So CSS smudging is not an option.</p>
+
+                <p>What about backend PHP smudging? This was actually way simpler than I thought:</p>
+
+                <pre><code class="language-php">
+                    //Choose a word, then replacing it with this bad boy does the job:
+                    $smudge = '&lt;img src="images/smudge1.png" id="smudge"&gt;';
+                    $modifiedText = preg_replace($wordPattern, $smudge, $origText, 1);
+                </code></pre>
+
+                <p>We first started off by just getting random articles and smudging out random words, and choosing three other words from the same article to form the multiple choice. The results weren’t that good: there were many articles with texts so bad that was barely readable, and the options sometimes were just random strings - since a “word” to my PHP script is just anything that was separated by a space.</p>
+                <div class="img-div"><img id="smudge-img" src="images/smudge.png"></div>
+
+                <p>That’s what we presented as our Minimum Viable Product — so there was quite a bit of feedback. The interface looked quite nice, but the biggest feedback was that it was meaningless — so many random words, unreadable articles, and the endless cycle of score grinding that the user gets nothing out of. The next challenge was adding meaning.</p>
+
+            </div>
+        </section>
+
+        <div>
+            <a href="#inkedout-hack3" class="cmdtrigger" cmd="cat hack3" desc="Human intervention">
+                <h2 class="listing" cmd="cat hack3">hack3</h2></a>
+        </div>
+        <section id="inkedout-hack3"><div class="article-section">
+
+            <p>To add meaning to our website, we decided to focus on only one event, and having the articles that we use be in chronologically ordered reports of that event — the Gallipoli Campaign. Cos why not? It’s ANZAC 100 this year, so it’s a good matching theme. </p>
+
+            <p>So the team retrieved from the API about a hundred of articles that came from the keyword “Gallipoli” (using the same method from Hack 1) and we read through them all to select out the relevant articles of good quality. At the end we came up with a selection of only six articles, each representing a certain stage of the campaign.</p>
+
+            <pre><code class="language-php">
+$trove_keywords = array(
+    "Forty-third Expeditionary Force number",
+    "Our latest success",
+    "From Gallipoli. Caption: Central News, photo. Caption: Returning from the trenches through a deep gully",
+    "Captain Graham Butler, D.S.O., a Brisbane doctor, who has been awarded the Distinguished Service Order for bravery at the Dardanelles",
+    "Anzac sentinel sunset";
+    "The residential club for returned soldiers and sailors"
+);
+            </code></pre>
+
+            <p>That itself wasn’t good enough; we needed to filter the options for the users as well. So yes, we hardcoded them after reading through the articles carefully to find quality words that invoke the most thinking.</p>
+
+            <pre><code class="language-php">
+//a list of good word options to smudge out, according to the same index in 
+//trove_keywords
+$smudge_words = array(
+    array("Representatives", "Defence", "17229", "wounds", "front", "Egypt", 
+        "Dardanelles", "seven"),
+    array("Narrows", "Asiatic", "ROCKHAMPTON", "procession", "Chanak", "Photo"),
+    array("Brevities", "Representative", "Metropolitan", "promotion", "instruction", "Lieutenant", "Tuckerman","Sergant"),
+    array("BUTLER", "SCOTTISH", "BUNDABERG", "doctor", "bravery", "Dardanelles", "fighting",
+        "wounded", "EGYPT"),
+    array("lllustration", "Miscellaneous", "official", "trenches", "funnel", "entonnoir", "veteran", "sentinel", "captured"),
+    array("letter", "rules", "secretary", "residential", "committee", "necessary", "knowledge")
+);
+
+            </code></pre>
+
+            <p>Now that yielded a satisfying set of options! I also added a progress bar so that the user knows that they are making progress and it’s not endless. I learned first hand to make meaningful use of any data, manual reviews and tweaking of the output to the user is an important step, as data itself has little meaning without careful interpretation.</p>
+
+            <div class="img-div"><img id="progress-img" src="images/progress.png"></div>
+
+            <p>What’s the seventh question you ask? Isn’t there only 6? well, that’s the BOSS level which you have to arrange everything you read in chronological order. It was done in a rush and is confirmed almost impossible to complete. Of course, you can still try <a target="_blank" href="https://u2f.interaction.courses">here</a>.</p>
+
+            <div class="img-div"><img id="final-img" src="images/final.png"></div>
+        
+        </div></section>
 
 
     </article>

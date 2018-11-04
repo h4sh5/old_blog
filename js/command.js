@@ -80,18 +80,22 @@ async function run_cd(cmd) {
 
 async function run_cat(cmd) {
     console.log("cat: " + cmd.split(" ")[1]);
+    clear_output();
     file = cmd.split(" ")[1];
     file = file.toLowerCase();
     //get current directory
     dir = getURLParameter("dir");
     //try to select elements from the page with the dir
     element = $("#" + dir + "-" + file);
-    console.log(elements);
-    clear_output();
+    if (element.length < 1) {
+        await typeWriter("output", "File not found.");
+        return;
+    }
 
     await typeWriter("output", "displaying file...");
     html = element.html();
     document.getElementById("output").innerHTML += html;
+    // window.location = "?dir=" + dir + "&file=" + file;
 
 }
 
