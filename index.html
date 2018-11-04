@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <title>h4sh@localhost:~#</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prism.css">
+</head>
+<body>
+
+<fieldset id="intro">
+
+    <legend>h4sh@localhost</legend>
+    
+    <article id="home">
+
+        <p id="caret" class="typewriter">Diving deep into infosec with the love of God.</p>
+
+        <p>My name is Haoxi, or you can call me h4sh. I love technology, and have since I was a child. I believe that the world can be such a better place, if technology is used in the right way.</p>
+
+        <p>I love hacking things. What does it have to do with doing good you ask? Hacking, unlike what Hollywood tells you, is an art. it is solving problems in creative ways, and making technology do what everyone else thought it couldn't or shouldn't.</p>
+
+        <p>Now, dive in with me.... <a href="?cmd=help" cmd="help" class="cmdtrigger">(enter help)</a></p>
+
+    </article>
+
+    <article id="inkedout">
+
+        <p id="caret" class="typewriter">Inked Out</p>
+        <nav id="inkedout-nav"></nav>
+        <div>
+            <a href="#inkedout-intro" class="cmdtrigger" cmd="cat introduction" desc="Introduction to project InkedOut">
+                <h2 class="listing" cmd="cat introduction">introduction</h2></a>
+        </div>
+        <section id="inkedout-introduction">
+            <div class="article-section">
+                <p>This year I have been tasked with creating a website that makes meaningful use of the State Library of Queensland datasets, along with a team of people in a course at UQ. It's quite a task, because the dataset is very old and has some serious issues with it such as missing links and silly spelling errors.</p>
+
+                <div class="img-div"><img src="images/slq.png"></div>
+
+                <p>Our initial idea is to use the newspaper photographs dataset, as it contained quite a lot of photos to work with as well as titles to newspaper articles in the period of WWI. We thought I would be fun to smudge out some words on the newspaper and make the user read the article to guess what it is in MCQ form.</p>
+            </div>
+        </section>
+
+        <div>
+            <a href="#inkedout-hack1" class="cmdtrigger" cmd="cat hack1" desc="How I worked around the old and broken dataset">
+                <h2 class="listing" cmd="cat hack1">hack1</h2></a>
+        </div>
+        <section id="inkedout-hack1">
+            <div class="article-section">
+                <p>Then we hit the problem where the photos have no text on them. Being stubborn as I am, I decided to hack this thing together. So what have we got on the dataset for each row? </p>
+
+                <ul>
+                    <li>title</li>
+                    <li>description</li>
+                    <li>a photo that has no text (if the link wasn’t broken)</li>
+                </ul>
+                <p>Ok, maybe that’s enough to search up the newspaper article that contains that photo on some other website. Then I discovered Trove — the treasure trove that we needed. It has every single page of the Queenslander newspaper archived from 1866, and even has OCR’ed text:</p>
+                <div class="img-div"><img src="images/trovepage.png"></div>
+
+                <p>Luckily Trove has an API that allows searching by keyword, and it returns a list of JSON objects including details of the matched articles:</p>
+                <div class="img-div"><img src="images/api.png"></div>
+
+                <p>The most useful bit is the troveUrl item. It leads us to the page above, where the article is displayed in all its splendour. But how do we get the text?</p>
+
+                <p>It seems like there’s a download button, which leads to the rendered text (in HTML form) of the article.</p>
+                <div class="img-div"><img src="images/download.png"></div>
+                <div class="img-div"><img src="images/text.png"></div>
+
+                <p>Now the challenge is to retrieve that text from the Trove URL, but in a program. It’s time for some magic. Notice that the URL of the article is:</p>
+                <p><a href="https://trove.nla.gov.au/newspaper/article/3523339">https://trove.nla.gov.au/newspaper/article/3523339</a></p>
+                <p>and the URL of the text is:</p>
+                <p><a href="https://trove.nla.gov.au/newspaper/rendition/nla.news-article3523339.txt">https://trove.nla.gov.au/newspaper/rendition/nla.news-article3523339.txt</a></p>
+
+
+                <p>See how the number 3523339 is the same? That’s the id of the article. Get that, and the kingdom is ours.
+                <br>
+                The following PHP snippet is how I got the article id off the trove search results:</p>
+
+                <pre><code class="language-php">
+                    $troveResults = json_decode($troveResults, true);
+                    $articleUrl = $troveResults["response"]["zone"][0]["records"]["article"][0]["url"];
+                    //returns the string '/article/id'
+                    $articleId = explode("/", $articleUrl)[2];
+                </code></pre>
+
+                <p>Now with the article id, we can pull the text down too:</p>
+                <pre><code class="language-php">
+                    $txtBaseUrl = "https://trove.nla.gov.au/newspaper/rendition/nla.news-article";
+                    $txtUrl = $txtBaseUrl . $articleId . ".txt";
+                    $article = strip_tags(file_get_contents($txtUrl)); 
+                </code></pre>
+
+                <p>And voilà!</p>
+                <div class="img-div"><img id="article-img" src="images/article.png"></div>
+
+            </div>
+            
+        </section>
+        
+
+
+
+    </article>
+    
+
+</fieldset>
+
+<div id="console">
+
+    <label for="terminal">visitor@localhost:~$</label>
+    <input type="text" id="terminal" autocomplete="off">
+
+</div>
+
+<div id="output"></div>
+
+<script src="js/command.js"></script>
+<script src="js/script.js"></script>
+<script src="js/prism.js"></script>
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+</body>
+</html>

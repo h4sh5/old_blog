@@ -1,0 +1,140 @@
+/* additional fonts */
+@font-face {
+    font-family: anonymous-pro;
+    src: url(../fonts/anonymous-pro.ttf);
+}
+
+
+/* css reset */
+* {
+    font-family: anonymous-pro;
+    font-size: 20px;
+    color: lime;
+    background-color: black;
+}
+
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: black; }
+}
+
+
+
+.typewriter {
+  font-family: anonymous-pro;
+  /*background-color: rgba(29,17,9,0.7);*/
+  background-color: black;
+  color: lime;
+
+  text-align: center;
+
+  height: 3em;
+  text-align: center;
+  padding-top: 1em;
+  /*text-align: left;*/
+
+  /*color: lime;*/
+  overflow: hidden; /*hide the text that's not typed out yet*/
+  border-right: .15em solid black;
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto;
+  letter-spacing: .15em; 
+  animation: 
+    typing 5s steps(40, end),
+    /*blink-caret .75s step-end infinite;*/
+    blink-caret 1s step-end infinite;
+
+  z-index: 2;
+/*  position: relative;
+  margin-top: 80vh;*/
+}
+
+body {
+    background-color: black;
+    border: 2px solid lime;
+}
+
+
+fieldset {
+  border: 1px solid #eeeeee;
+  color: lime;
+}
+
+article h2 {
+  padding-left: 1em;
+}
+
+article p {
+  color: white;
+  padding: 1em;
+
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.article-section p {
+  color: white;
+  padding: 1em;
+}
+
+#console {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#console label {
+  color: lime;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+#terminal {
+
+  color: lime;
+  background-color: #222;
+  width: 80vw;
+}
+
+a {
+  color: lime;
+}
+
+#output {
+  /*color: lime;*/
+  padding: 1em;
+}
+
+.description {
+  color: white;
+
+}
+
+.listing {
+  display: inline;
+}
+
+div.img-div {
+  padding: 1em;
+  /*text-align: center;*/
+}
+
+#article-img {
+  height: 6em;
+}
+
+nav {
+  padding-left: 1em;
+}
