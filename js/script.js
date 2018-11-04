@@ -139,6 +139,7 @@ $("#scrub-button").click(async function(e) {
     await typeWriter("output", "Excuse me!?", "description");
     await sleep(2000);
     await typeWriter("output", "Alright, alright.. Here you go.", "description");
+    await sleep(500);
     window.location = "?boring=1";
 
 });
@@ -174,7 +175,7 @@ async function show_listing(delay=300) {
     dir = getURLParameter("dir").toLowerCase();
     await typeWriter(dir + "-nav", "directory listing:");
     await typeWriter(dir + "-nav", "--------------------------");
-    
+
     elements = $("#" + dir + " .cmdtrigger");
     // console.log("#" + dir + " .cmdtrigger");
     console.log(elements.length);
