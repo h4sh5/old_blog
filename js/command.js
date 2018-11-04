@@ -51,11 +51,19 @@ async function run_ls() {
     await typeWriter("output", "description");
     document.getElementById("output").innerHTML += "<hr>";
 
-    for (name in entries) {
-        document.getElementById("output").innerHTML += create_file_entry(name, entries[name]);
+    entries = $("article");
+    console.log(entries);
+    for (i = 0; i < entries.length; i++) {
+        element = entries[i];
+        description = element.getAttribute("desc");
+        name = element.id;
+        if (name == "") {
+            continue;
+        }
+        document.getElementById("output").innerHTML += create_file_entry(name, "cd");
         create_handlers(); //refresh handlers list
         document.getElementById("output").innerHTML += "&nbsp;".repeat(spaces - name.length);
-        document.getElementById("output").innerHTML += "<span class='description'>" +  descriptions[name] + "</span><br>";
+        document.getElementById("output").innerHTML += "<span class='description'>" +  description + "</span><br>";
         await sleep(500);
     }
     create_handlers(); //refresh handlers list
@@ -86,7 +94,14 @@ async function run_cat(cmd) {
     //get current directory
     dir = getURLParameter("dir");
     //try to select elements from the page with the dir
-    element = $("#" + dir + "-" + file);
+    try {
+        element = $("#" + dir + "-" + file);
+    } catch (e) {
+        console.log("error: " + e);
+        await typeWriter("output", "You can't enter tags man! Stop trynna hax me!");
+    }
+    
+    console.log(element);
     if (element.length < 1) {
         await typeWriter("output", "File not found.");
         return;
@@ -111,7 +126,8 @@ async function display_help_item(cmd, description) {
 
 async function run_help() {
     clear_output();
-    await typeWriter("output", "Available commands are:");
+    await typeWriter("output", "Type commands into the prompt, or click on underlined links to navigate the site.");
+    await typeWriter("output", "Available commands are (don't include the <> when you type them):");
     await typeWriter("output", " ");
 
     await display_help_item("help", "displays this");

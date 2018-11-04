@@ -4,16 +4,28 @@
     <meta charset="UTF-8"> 
     <title>h4sh@localhost:~#</title>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prism.css">
+    <link rel="stylesheet" href="css/jquery-ui-just-effects.min.css">
+
 </head>
 <body>
 
 <fieldset id="intro">
 
     <legend>h4sh@localhost</legend>
+
+    <article>
+        <!-- this one is the nav for scrub mode -->
+        <h2>table of contents</h2>
+        <ul>
+            <li><a href="#inkedout">project InkedOut</a></li>
+            <li><a href="#contact">contact me</a></li>
+        </ul>
+    </article>
     
-    <article id="home">
+    <article id="home" desc="There's no place like 127.0.0.1">
 
         <p id="caret" class="typewriter">Diving deep into infosec with the love of God.</p>
 
@@ -21,11 +33,13 @@
 
         <p>I love hacking things. What does it have to do with doing good you ask? Hacking, unlike what Hollywood tells you, is an art. it is solving problems in creative ways, and making technology do what everyone else thought it couldn't or shouldn't.</p>
 
-        <p>Now, dive in with me.... <a href="?cmd=help" cmd="help" class="cmdtrigger">(enter help)</a></p>
+        <p>Now, dive in with me.... <a href="?cmd=help" cmd="help" class="cmdtrigger">help</a></p>
+
+        <p><a href="#turn_on_your_javascript_man" id="scrub-button">(What is this UNIX terminal jazz? I just want a normal website!)</a></p>
 
     </article>
 
-    <article id="inkedout">
+    <article id="inkedout" desc="Hacky bits and pieces from an interactive design project">
 
         <p id="caret" class="typewriter">Inked Out</p>
         <nav id="inkedout-nav"></nav>
@@ -169,12 +183,30 @@ $smudge_words = array(
             <p>What’s the seventh question you ask? Isn’t there only 6? well, that’s the BOSS level which you have to arrange everything you read in chronological order. It was done in a rush and is confirmed almost impossible to complete. Of course, you can still try <a target="_blank" href="https://u2f.interaction.courses">here</a>.</p>
 
             <div class="img-div"><img id="final-img" src="images/final.png"></div>
-        
+
         </div></section>
 
 
     </article>
     
+
+    <article id="contact" desc="Get in touch with me">
+        <p id="caret" class="typewriter">Contact Me</p>
+        <section id="contact-email"><div class="article-section">
+            <a href="#contact-email" class="cmdtrigger" cmd="cat email" desc="haoxi.tan@gmail.com">
+                <h2 class="listing" cmd="echo my email is haoxi.tan@gmail.com">email</h2></a>
+
+            <p class="to-hide"><a href="mailto:haoxi.tan@gmail.com">haoxi.tan@gmail.com</a></p>
+
+        </div></section>
+
+        <section id="contact-facebook"><div class="article-section">
+            <a href="#contact-facebook" class="cmdtrigger" cmd="echo just search Haoxi Tan on facebook, you won't miss me" desc="Haoxi Tan">
+                <h2 class="listing" cmd="echo just search Haoxi Tan on facebook, you won't miss me">facebook</h2></a>
+            <p class="to-hide">Haoxi Tan</p>
+        </div></section>
+
+    </article>
 
 </fieldset>
 
@@ -190,7 +222,7 @@ $smudge_words = array(
 <script src="js/command.js"></script>
 <script src="js/script.js"></script>
 <script src="js/prism.js"></script>
-<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<script src="js/jquery-ui-just-effects.min.js"></script>
 
 </body>
 </html>

@@ -67,26 +67,36 @@ body {
 fieldset {
   border: 1px solid #eeeeee;
   color: lime;
+  /*display: inline-block;*/
+  
+}
+
+article {
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 90vw;
 }
 
 article h2 {
   padding-left: 1em;
+  padding-right: 1em;
 }
 
 article p {
   color: white;
   padding-left: 1em;
+  padding-right: 1em;
+}
 
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -ms-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
+section {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .article-section p {
   color: white;
   padding-left: 1em;
+  padding-right: 1em;
 }
 
 #console {
@@ -149,5 +159,9 @@ div.img-div {
 
 nav {
   padding-left: 1em;
+  padding-right: 1em;
 }
 
+.to-hide * {
+  color: white;
+}

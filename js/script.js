@@ -3,6 +3,13 @@ var counter = 0;
 $(document).ready(async function() {
 
     console.log('ready');
+
+    if (decodeURIComponent(getURLParameter('boring')).toLowerCase() == "1") {
+        throw new Error("Someone decided to be boring. Fine."); 
+    }
+
+    $(".to-hide").hide();
+
     $("#terminal").focus();
 
     $.getScript('js/command.js', function() {
@@ -16,9 +23,12 @@ $(document).ready(async function() {
 
     if (dir != "undefined" && $("#" + dir).length > 0) {
         $("#" + dir).show();
+        $("#" + dir).children().show();
         $(this).scrollTop(0);
         if (file == "undefined") {
-            await show_listing();
+            if (dir != "home") {
+                await show_listing();
+            }
         } else {
             console.log("displaying file!");
             await show_listing(0);
@@ -52,8 +62,6 @@ $(document).ready(async function() {
 
 
 });
-
-
 
 
 //taken from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep#39914235
@@ -123,6 +131,20 @@ $("#terminal").on("keypress", function(e) {
         $("#terminal").val("");
     }
 });
+
+$("#scrub-button").click(async function(e) {
+    e.preventDefault();
+    clear_output();
+    $("body").effect("shake");
+    await typeWriter("output", "Excuse me!?", "description");
+    await sleep(2000);
+    await typeWriter("output", "Alright, alright.. Here you go.", "description");
+    window.location = "?boring=1";
+
+});
+
+
+
 
 function create_handlers() { //refractor this
     //clear all previous handlers then create again
