@@ -54,11 +54,15 @@
         </div>
         <section id="inkedout-introduction">
             <div class="article-section">
-                <p>This year I have been tasked with creating a website that makes meaningful use of the State Library of Queensland datasets, along with a team of people in a course at UQ. It's quite a task, because the dataset is very old and has some serious issues with it such as missing links and silly spelling errors.</p>
+                <p>This year I have been tasked with creating a website that makes meaningful use of the State Library of Queensland datasets, along with a team of people in the course DECO1800 (Interactive Design) at UQ. It's quite a task, because the dataset is very old and has some serious issues with it such as missing links and silly spelling errors.</p>
 
                 <div class="img-div"><img src="images/slq.png"></div>
 
-                <p>Our initial idea is to use the newspaper photographs dataset, as it contained quite a lot of photos to work with as well as titles to newspaper articles in the period of WWI. We thought I would be fun to smudge out some words on the newspaper and make the user read the article to guess what it is in MCQ form.</p>
+                <p>Our initial idea is to use the newspaper photographs dataset, as it contained quite a lot of photos to work with as well as titles to newspaper articles in the period of WWI. We thought I would be fun to smudge out some words on the newspaper and make the user read the article to guess what it is from multiple choices.</p>
+
+                <p>Our team consists of Lee the designer, Rine the writer, me the coder and Steven and Irene who are delegated with small front end development tasks due to their language barrier.</p>
+
+                <a href="#inkedout">Back to top</a>
             </div>
         </section>
 
@@ -68,14 +72,15 @@
         </div>
         <section id="inkedout-hack1">
             <div class="article-section">
-                <p>Then we hit the problem where the photos have no text on them. Being stubborn as I am, I decided to hack this thing together. So what have we got on the dataset for each row? </p>
+                <p>As soon as we started coding we hit the problem where the photos have no text on them. Being stubborn as I am, I decided to hack this thing together. So what have we got on the dataset for each row? </p>
 
                 <ul>
                     <li>title</li>
                     <li>description</li>
                     <li>a photo that has no text (if the link wasn’t broken)</li>
                 </ul>
-                <p>Ok, maybe that’s enough to search up the newspaper article that contains that photo on some other website. Then I discovered Trove — the treasure trove that we needed. It has every single page of the Queenslander newspaper archived from 1866, and even has OCR’ed text:</p>
+
+                <p>Ok, maybe that’s enough to search up the newspaper article that contains the photo on some other website. Then I discovered Trove — the treasure trove that we needed. It has every single page of the Queenslander newspaper archived from 1866, and even has OCR’ed text:</p>
                 <div class="img-div"><img src="images/trovepage.png"></div>
 
                 <p>Luckily Trove has an API that allows searching by keyword, and it returns a list of JSON objects including details of the matched articles:</p>
@@ -114,6 +119,8 @@ $article = strip_tags(file_get_contents($txtUrl));
                 <p>And voilà!</p>
                 <div class="img-div"><img id="article-img" src="images/article.png"></div>
 
+                <a href="#inkedout">Back to top</a>
+
             </div>
 
         </section>
@@ -138,6 +145,8 @@ $article = strip_tags(file_get_contents($txtUrl));
                 <div class="img-div"><img id="smudge-img" src="images/smudge.png"></div>
 
                 <p>That’s what we presented as our Minimum Viable Product — so there was quite a bit of feedback. The interface looked quite nice, but the biggest feedback was that it was meaningless — so many random words, unreadable articles, and the endless cycle of score grinding that the user gets nothing out of. The next challenge was adding meaning.</p>
+
+                <a href="#inkedout">Back to top</a>
 
             </div>
         </section>
@@ -185,9 +194,11 @@ $smudge_words = array(
 
             <div class="img-div"><img id="progress-img" src="images/progress.png"></div>
 
-            <p>What’s the seventh question you ask? Isn’t there only 6? well, that’s the BOSS level which you have to arrange everything you read in chronological order. It was done in a rush and is confirmed almost impossible to complete. Of course, you can still try <a target="_blank" href="https://u2f.interaction.courses">here</a>.</p>
+            <p>What’s the seventh question you ask? Isn’t there only 6? well, that’s the BOSS level which you have to arrange everything you read in chronological order. It was done in a rush and is confirmed almost impossible to complete. Of course, you can still try it <a target="_blank" href="https://u2f.interaction.courses">here</a>.</p>
 
             <div class="img-div"><img id="final-img" src="images/final.png"></div>
+
+            <a href="#inkedout">Back to top</a>
 
         </div></section>
 
@@ -249,6 +260,8 @@ $smudge_words = array(
             <p>This is a decent first year course. APIs are no doubt used everywhere, and getting some backend coding taught to students is crucial and beneficial for everyone. The course provided a great platform for students to freely express their creativity through design and code, which is pretty cool. It enabled some teams of third year students to really take their time to shine, inspire and dominate everyone else (yes you know who I'm talking about)</p>
 
             <p>I also earnestly, earnestly encourage letting people choose their own team and do peer reviews. I think peer reviews are not suppose to be the last resort of bad contribution, but its purpose is to make everyone do their part and ensure good communication with their team.</p>
+
+            <a href="#inkedout">Back to top</a>
 
         </div></section>
 
