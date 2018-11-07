@@ -61,14 +61,16 @@
 body {
     background-color: black;
     border: 2px solid lime;
+    
 }
 
 
 fieldset {
   border: 1px solid #eeeeee;
   color: lime;
-  padding: 0;
+  padding: 1em;
   margin: 0;
+  width: 90vw;
   /*display: inline-block;*/
   
 }
