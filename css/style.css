@@ -8,7 +8,7 @@
 /* css reset */
 * {
     font-family: anonymous-pro;
-    font-size: 20px;
+    font-size: 16px;
     color: lime;
     background-color: black;
 }
@@ -67,8 +67,15 @@ body {
 fieldset {
   border: 1px solid #eeeeee;
   color: lime;
+  padding: 0;
+  margin: 0;
   /*display: inline-block;*/
   
+}
+
+legend {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 article {
@@ -157,6 +164,18 @@ div.img-div {
   height: 20em;
 }
 
+#rootdance-img {
+  height: 10em;
+}
+
+#beautiful-img {
+  height: 10em;
+}
+
+#email-img {
+  height: 13em;
+}
+
 nav {
   padding-left: 1em;
   padding-right: 1em;
@@ -169,3 +188,14 @@ nav {
 blockquote * {
   background-color: #333;
 }
+
+#resources-oscp li {
+  color: white;
+}
+
+@media only screen and (max-width: 800px) {
+    * {
+        font-size: 3vw;
+    }
+}
+

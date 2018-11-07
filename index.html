@@ -270,6 +270,83 @@ $smudge_words = array(
 
 
     </article>
+
+    <article id="oscp" desc="My journey to becoming an Offensive Security Certified Professional">
+        <p id="caret" class="typewriter">Offensive Security Certified Professional</p>
+        <nav id="oscp-nav"></nav>
+
+        <div>
+            <a href="#home" class="cmdtrigger" desc="Go back to home page"><h2 class="listing" cmd="cd ..">..</h2></a>
+        </div>
+
+        <div>
+            <a href="#oscp-introduction" class="cmdtrigger" cmd="cat introduction" desc="What the hack is OSCP?"><h2 class="listing" cmd="cat introduction">introduction</h2></a>
+        </div>
+        <section id="oscp-introduction"><div class="article-section">
+            <p>Now let's talk about some more hacking. This time it's hardcore hacking, in the field of infosec (information security). I have always felt a passion for this field, not only because it is so intriguing and curious, but also for the thrill of mastery and sense of control when a computer listens to you wholeheartedly.</p>
+
+            <p>The practise of penetration testing - or pentesting - is the ethical term used for gaining unauthorised access to systems and networks with permission. It is done to find out where the holes and gaps are, so that someone with true malicous and destructive intent cannot easily do the same.</p>
+
+            <div class="img-div"><img src="images/offsec.png"></div>
+
+            <p>Offensive Security Certified Professional (OSCP) is the world’s first hands on penetration testing certificate. Challengers need to have sound knowledge and skills regarding security and are challenged to compromise 5 different systems in 24 hours (a mix of Windows and *nix) and gain the highest privilege. Their motto is “Try Harder!”</p>
+
+            <h2>Materials & The Lab</h2>
+
+            <p>In order to take the OSCP exam you have to take the PWK(Penetration Testing With Kali Linux) course offered by offsec. The material includes a detail PDF and an archive of video tutorials on different topics. The topics include linux command line, port scaning, service enumeration, metasploit, buffer overflow, using exploits, web app hacking, privilege escalation and report writing etc. Don't worry if any of this sound like Matrix to you - these things are widely covered on the internet and is only a <a target="_blank" href="https://www.google.com/search?q=penestration+testing+tutorial">google search</a> away!</p>
+
+            <p>The thing that stands out in the course is offsec’s online lab. This is a VPN that has more than 50 machines and 4 subnets for students for freely practise their skills in.</p>
+
+            <p>Since I am a poor student, I bought the 30 day lab package that includes the course materials and then added 15 days last holiday (that’s 800+150=900USD, so about 1180AUD). It can be costly but the things that you learn and experience in the course plus a renowned cyber certificate is definitely worth more than what you pay. I only needed 45 days because I have previous experience on Linux and hacking; for a beginner I would recommend 60-90 days in the lab. More detailed information about the course can be found <a target="_blank" href="https://www.offensive-security.com/information-security-training/penetration-testing-training-kali-linux/">here</a>.</p>
+
+
+        </div></section>
+
+        <div>
+            <a href="#oscp-exam" class="cmdtrigger" cmd="cat exam" desc="My miraculous exam experience"><h2 class="listing" cmd="cat exam">the exam</h2></a>
+        </div>
+        <section id="oscp-exam"><div class="article-section">
+            <p>I was super excited (and scared) the week before the exam. Although I did a lot of preparations, looking at other student’s either intimidating or frightening write ups made me feel like it’s never enough. After my lab time was over (which was a month ago) I mainly practised by attacking virtual machines on vulnhub.com. I booked the exam a bit late so all the weekends are gone for like 3 months, and stacking up on my busy uni schedule I had to book it on a Tuesday morning. The things I did on the night before the exam was pray, and pray, and pray ...</p>
+
+            <p>The exam was to start at 7 in the morning, but somehow I woke up at 3:45. Looking out the window into the sleeping Brisbane downtown, I continued praying. God spoke to me at this moment, whispering the words “The victory is yours.” and again, “The victory is yours.” Reassured, I was about to get back to sleep when the Holy Spirit prompted me again this time, repeating: “Get up and get ready.” Never have I experienced this in my life, so clearly and urgently. I obeyed.</p>
+
+            <p>I got out of bed, took out my bulky laptop for the exam (8GB RAM, i7 and GTX 970M) and booted up my Ubuntu box with a bunch of pentest tools (installed from a <a href="https://github.com/madmantm/ubuntu-pentest-tools" target="_blank">script on github</a>). However this setup is not too convenient, as all the tools are in different folders and not all of them are on the system's PATH. I realized God’s reason for waking me up — I should install the Kali Linux virtual machine, which I neglected to do. An hour later it finally finished torrenting and installing. Being the careless person I am without God’s help I would’ve wasted so much time in the exam. 🤦🏻‍♂️ Then I went back to sleep til right before 7.</p>
+
+            <p>The full mark of the exam is 100, with 70 needed to pass, and the 5 machines differ in points according to difficulty. I started with the buffer overflow machine,  and after a harsh 2 hours I scribbled half a page of weird memory addresses on paper and a page of Python exploit code, but the shellcode just kept crashing for whatever reason. I decided to take a break, playing some worship songs on guitar and pray. Then miraculously the Spirit put the words on my mind to type into the search bar — and half an hour later I gained my first 25 points. The combination of overwhelming pride, joy and thankfullness simpy cannot be fully described with words.</p>
+
+            <div class="img-div"><img id="rootdance-img" src="images/rootdance.gif"></div>
+
+            <p>After this machine time flew past me, as reverse shells popped into my terminal one by one. At around 3pm I already rooted 3 machines and have limited access to the fourth (which means no full marks for that box). Exhausted, I decided to take a nap.. But I didn’t last half an hour before climbing out of bed and keeping on hacking 🤦🏻‍♂️ Just before 6pm I finally rooted the fourth box, gaining a solid 80 points. Sadly I couldn’t wrap my head around the fifth and hit the hay at 1am, until 7 the next day.</p>
+
+            <p>The actual exam time allowance is 23 hours and 45 minutes, then the student is allowed 24 hours to write and submit their report with detailed steps of attacks and screenshots. I used the OSCP report template (for libreoffice), and surprisingly the results came up the next night… After seeing the notification on my phone I could hardly breath, my heart raced and my hands were shaking as I opened the email…</p>
+
+            <div class="img-div"><img id="email-img" src="images/email.jpg"></div>
+
+            <h1>I DID IT!!</h1>
+            <div class="img-div"><img id="img-beautiful" src="images/beautiful.gif"></div>
+
+            <h2>And finally, some tips and resouces for the exam and pentesting in general</h2>
+            <ul id="resources-oscp">
+                <li>True wisdom comes from the LORD.</li>
+                <li>Don’t get stuck on one thing for too long. If it goes for more than 40 minutes, take a break and move on to the next.</li>
+                <li>After getting a linux reverse shell you should <a href="https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/" target="_blank">upgrade it to fully iteractive TTY</a></li>
+
+                <li>How to use mona.py plugin to find badchars automatically: <a href="http://bulbsecurity.com/finding-bad-characters-with-immunity-debugger-and-mona-py/" target="_blank">http://bulbsecurity.com/finding-bad-characters-with-immunity-debugger-and-mona-py/</a></li>
+
+                <li>OSCP like vulnhub VMs: <a href="https://www.abatchy.com/2017/02/oscp-like-vulnhub-vms.html" target="_blank">https://www.abatchy.com/2017/02/oscp-like-vulnhub-vms.html</a></li>
+
+                <li>g0tmi1k's Linux privilege escalation <a href="https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/" target="_blank">tutorial</a></li>
+
+                <li>Enumerate! Enumerate!! Enumerate!!!</li>
+
+                <li>And finally, as always.. Try harder!</li>
+            </ul>
+
+            <a href="#oscp">Back to top</a>
+
+        </div></section>
+
+    </article>
     
 
     <article id="contact" desc="Get in touch with me">
