@@ -61,9 +61,9 @@ async function run_ls() {
             continue;
         }
         document.getElementById("output").innerHTML += create_file_entry(name, "cd");
-        create_handlers(); //refresh handlers list
         document.getElementById("output").innerHTML += "&nbsp;".repeat(spaces - name.length);
         document.getElementById("output").innerHTML += "<span class='description'>" +  description + "</span><br>";
+        create_handlers(); //refresh handlers list
         await sleep(500);
     }
     create_handlers(); //refresh handlers list

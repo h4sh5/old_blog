@@ -20,6 +20,7 @@ $(document).ready(async function() {
     //hide all articles and show only the beginning, unless there's some page specified in the GET param
     dir = decodeURIComponent(getURLParameter('dir')).toLowerCase();
     file = decodeURIComponent(getURLParameter('file')).toLowerCase();
+    create_handlers();
 
     if (dir != "undefined" && $("#" + dir).length > 0) {
         $("#" + dir).show();
@@ -39,9 +40,9 @@ $(document).ready(async function() {
         $("#home").show();
         $(this).scrollTop(0);
         //type in ls and execute it
-        await sleep(2000);
-        await valTypeWriter("terminal", "ls", 300);
-        system($("#terminal").val());
+        await sleep(300);
+        await valTypeWriter("terminal", "ls", 200);
+        system("ls");
     }
 
     if (file != "undefined" && $("#" + dir + "-" + file).length > 0) {
