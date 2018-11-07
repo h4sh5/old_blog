@@ -193,12 +193,13 @@ async function show_listing(delay=300) {
         document.getElementById(element.id).parentNode.innerHTML += "&nbsp;".repeat(spaces - length);
         console.log(element.id, element);
         description = $("#" + element.id).attr("desc");
+        
         if (delay != 300) {
             await typeWriter(parentId, description, "description", 0);
         } else {
             await typeWriter(parentId, description, "description");
         }
-        console.log("test");
+        create_handlers();
         await sleep(delay);
         
     }
