@@ -29,7 +29,7 @@
 
         <p id="caret" class="typewriter">Diving deep into infosec with the love of God.</p>
 
-        <p>My name is Haoxi (pronounced How'she), or you can call me hash. I love technology, and have since I was a child. I believe that the world can be such a better place, if technology is used in the right way.</p>
+        <p>My name is Haoxi (pronounced How'she), or you can call me hash. I am currently taking Bachelors of IT at Unviersity of Queensland. I love technology, and have since I was a child. I believe that the world can be such a better place, if technology is used in the right way.</p>
 
         <p>I love hacking things. What does it have to do with doing good you ask? Hacking, unlike what Hollywood tells you, is an art. It is solving problems in creative ways, and making technology do what everyone else thought it couldn't or shouldn't.</p>
 
@@ -348,6 +348,139 @@ $smudge_words = array(
 
     </article>
     
+    <article id="scholarship" desc="How I stacked together a full stack electronic scoreboard controlled by a mobile friendly interface">
+        <p id="caret" class="typewriter">The hard, the soft and the matrix</p>
+        <nav id="scholarship-nav"></nav>
+        <div>
+                <a href="#home" class="cmdtrigger" desc="Go back to home page"><h2 class="listing" cmd="cd ..">..</h2></a>
+        </div>
+
+        <div>
+                <a href="#scholarship-introduction" class="cmdtrigger" desc="How it all began"><h2 class="listing" cmd="cat introduction">introduction</h2></a>
+        </div>
+        <section id="scholarship-introduction"><div class="article-section">
+            <p>I started learning to code when I was 15, in high school, and I have always loved it. I was lucky enough to witness with my own eyes the rise of the Single Board Computers, pioneered by the Raspberry Pi. I went to the launch of Codeworx challenge by Orion Health in 2015, when I had pretty much no idea what Linux or Raspberry Pi was. </p>
+
+            <p>Our computer science teacher, Mr. Ganess, brought us there to show us the exciting future of IoT and in attempt to get some of us to take on the challenge. Although I have no idea what's going on, I went for it anyway.</p>
+
+            <p>Just cos I get a cool box with a Raspberry Pi kit that looks awesome! Not that I know how to do anything with it..</p>
+            <div class="img-div"><img src="images/kit.jpg" id="kit-img"></div>
+
+            <p>So I borrowed a square (yes, it was a square) monitor from my homestay host, and booted up the Pi successfully. I remembered I did some wiring and made some LEDs blink. Then I put it away in the closet only to return the kit to my teacher the year after. I think I kept the box.</p>
+
+            <p>The same year I also started learning about the Kali Linux OS and how to use the linux command line. I also figured out how to boot up the Raspberry Pi headlessly and access it via WiFi and SSH. This planted the seed for a year after, when our teacher started to talk about the NCEA technology scholarship, and the need for an electronic scoreboard in the school. To obtain the technology scholarship, the student must work with real life clients, go through the development process of constant feedback and refinement, and finally deliver a viable solution of prototype. Equipped with my Linux Bash-Fu, I took on the challenge in the end of 2016.</p>
+
+            <a href="#scholarship">Back to top</a>
+
+        </div></section>
+
+        <div>
+                <a href="#scholarship-matrix" class="cmdtrigger" desc="Is that.. the matrix?"><h2 class="listing" cmd="cat matrix">taking the red pill</h2></a>
+        </div>
+        <section id="scholarship-matrix"><div class="article-section">
+            <p>Just before me leaving for the holidays, my teacher so generously blessed me with a small, thin 16x32 LED board. Filled with mission and purpose, I took it home along with my new found love, the Raspberry Pi Model 3B, to experiment over the holidays.</p>
+
+            <p>After one month of Chinese feasting and messed up sleep schedules, I decided that it was time to start on my project so that I can maybe use it to do something before Chinese New Year hits. Then I realised I have no idea how to interface with the board with the Raspberry Pi, as the example code on the website was Arduino only.</p>
+            <div class="img-div">
+                <img src="images/front.jpg" id="front-img">
+                <img src="images/back.jpg" id="back-img">
+            </div>
+
+            <p>There are 16 pins on the section marked DATA at the back of the board. After a while of Baidu-ing I managed to find a few Chinese <a href="https://www.tuicool.com/articles/R7FnUzb">posts</a> about how the LED Matrix works, along with some pseudocode and node.js examples.</p>
+
+            <pre><code class="language-js">
+while(1){
+    for(var i = 0; i &lt; 16; i++){ //picks the row
+            LATCH = 0;  //opens the latch
+            for(var j = 0; j &lt; 16; j++){
+                R1 = output of position
+                //sends a pulse and saves it
+                SCK = 0;
+                SCK = 1;
+            }
+
+        OE = 1;  //shuts the screen to prevent overlapping during render
+        ROW = i;   //select current row with the 4-bit row selection system
+        LATCH = 1; //locks and latch and sends the output
+        OE = 0; //turn off the Output Enable to light up the screen
+    }
+}           
+            </code></pre>
+            
+            <p>Above is in essence how the different pins work on the board. Every tick a pulse is sent to the clock (which will scan across the entire board) to pick a specific position to display on a row when the latch is opened (no voltage sent to it) and the Output Enable is disabled (by sending a high voltage). Then after that the latch is closed (by sending a voltage to it) to lock the row and position selection, and the OE is enabled (by not sending it voltage) to let the light come through the specified positions. The position selection is a nested for loop, in this case looping over the 16 columns as the tutorial was based on a 16x16 matrix board. R1 is the Red output, which tells the single coloured board to output its only colour. If it was an RGB board there would be G1 and B1 as well.</p>
+
+            <p>After understanding how the pins work, I realized that the LAT pin (latch) is actually called STB on my own board. With some tedious work I finally jumpered all the pins onto my the Pi's GPIO.</p>
+
+            <div class="img-div"><img src="images/jumpered.JPG" id="jumpered-img"></div>
+
+            <p>Next is to port the NodeJS example code on the blog into Python, my favourite (and only) language at the time. Here's the code displayed on the website:</p>
+
+            <pre><code class="language-js">
+const Gpio = require("rpio2").Gpio;
+var latch = new Gpio(38);//锁存器 
+var clk = new Gpio(40); //时钟信号
+var red = new Gpio(36, true); //点阵输出信号
+var oe = new Gpio(32); //使能信号
+var rows = Gpio.group([29,31,33,35]);
+
+rows.open(Gpio.OUTPUT, Gpio.LOW); 
+rows.value = 0; //选行
+latch.open(Gpio.OUTPUT, Gpio.HIGH); //锁存输出
+clk.open(Gpio.OUTPUT, Gpio.LOW);
+red.open(Gpio.OUTPUT, Gpio.HIGH);
+oe.open(Gpio.OUTPUT, Gpio.HIGH);
+rows.value = 0;
+
+const readText = require("./lib/font_matrix.js").readText;
+var pixels = readText("你好，世界！");
+var startTime = Date.now();
+
+while(1){
+    var t = Math.floor((Date.now() - startTime) / 1000);
+
+    data = pixels[t % pixels.length];  //1 秒钟换一个字，循环播放
+
+    for(var j = 0; j < 16; j++){    
+    latch.value = 0;
+    for(var i = 0; i < 16; i++){
+        red.value = data[j][15 - i]; //注意输入信号从右到左，所以左右要颠倒一下
+        clk.value = 0;
+        clk.value = 1;
+    }
+    oe.value = 1;
+    rows.value = j;
+    latch.value = 1;
+    oe.value = 0;
+    }
+}
+            </code></pre>
+
+            <p>I noted that in his node.js monkey code, the row selection is a GPIO group of four pins, namely A,B,C and D which is also on my board. He used that to select a row by simply sending the row number j (0-15). However there is no GPIO.group function in the Python GPIO library, so I had to improvise by sending each A,B,C and D a binary value. So during the process of “translating” his node.js monkey code to working python code, I wrote a function called rowconv (row convert) which takes an integer (0-15) and returns it as a 4-bit binary array:</p>
+
+            <pre><code class="language-python">
+#function for converting an integer value into 16bit ABCD pin
+def rowconv(val):
+    val = bin(val)
+    val = list(val.lstrip('0b'))
+    if len(val) &lt; 4:
+        for i in range (4-len(val)):
+            val.insert(i,0)
+    return val
+            </code></pre>
+
+            <p>Yes, I could have used some more maths instead of string parsing in Python. I was a noob, and thinking back now there were better ways to do things. The syntax of the nested loop tells me that the array being looped through must be a 2D array filled with 1s and 0s -- oddly, 1 for "off" (because a signal was sent) and 0 for "on". My heart lept in joy as my 2D numpy array of all 0s flashed across the screen.</p>
+
+            <div class="img-div"><img src="images/flash.JPG" id="flash-img"></div>
+            <p>This section is still work in progress and I will update it when I have time.</p>
+
+            <a href="#scholarship">Back to top</a>
+
+        </div></section>
+
+
+
+
+    </article>
 
     <article id="contact" desc="Get in touch with me">
         <p id="caret" class="typewriter">Contact Me</p>

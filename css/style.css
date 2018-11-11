@@ -150,6 +150,10 @@ div.img-div {
   /*text-align: center;*/
 }
 
+div.img-div img {
+  height: 15em;
+}
+
 #article-img {
   height: 6em;
 }
@@ -176,6 +180,22 @@ div.img-div {
 
 #email-img {
   height: 13em;
+}
+
+#kit-img {
+  height: 16em;
+}
+
+#front-img {
+  height: 16em;
+}
+
+#back-img {
+  height: 16em;
+}
+
+#flash-img {
+  height: 18em;
 }
 
 nav {
